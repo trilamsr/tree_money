@@ -9,6 +9,6 @@ urlpatterns = [
     
 
     # Logan
-    url(r"^getTicker$", views.getTicker),
-    url(r"^getGraph/(?P<ticker>\w+)/(?P<graph_range>\w+)$", views.getGraph),
+    url(r"^getTicker$", views.getGraph),
+    # url(r"^getGraph/(?P<ticker>\w+)/(?P<graph_range>\w+)$", views.getGraph),
 ]
