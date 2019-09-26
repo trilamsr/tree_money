@@ -6,7 +6,7 @@ $(document).ready(function () {
                     method: 'post',
                     data: $(this).serialize(),
                     success: function (serverResponse) {
-                        $('.allSnakes').html(serverResponse);
+                        $('.graph').html(serverResponse);
                         async function getData() {
 
                             const response = await fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?interval=5m&region=US&symbol=${ticker}&lang=en&range=${graph_range}`, {
