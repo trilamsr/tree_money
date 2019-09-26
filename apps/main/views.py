@@ -5,6 +5,15 @@ from django.shortcuts import render, redirect
 def main(request):
     return render(request, 'main/container.html')
 
+def get_stats(request):
+    if request.method == 'GET':
+        return render(request,'main/__stats__.html')
+
+
+
+
+
+
 
 def getTicker(request):
     ticker = request.POST['search_ticker']
