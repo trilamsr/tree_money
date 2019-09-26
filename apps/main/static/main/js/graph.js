@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    $(document).on('submit', '#search_ticker', function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: '/getTicker',
-            method: 'post',
-            data: $(this).serialize(),
-            success: function (serverResponse) {
-                $('.allSnakes').html(serverResponse);
-                async function getData() {
+            $(document).on('submit', '#search_ticker', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/getTicker',
+                    method: 'post',
+                    data: $(this).serialize(),
+                    success: function (serverResponse) {
+                        $('.graph').html(serverResponse);
+                        async function getData() {
 
                     const response = await fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?interval=5m&region=US&symbol=${ticker}&lang=en&range=${graph_range}`, {
                         "method": "GET",

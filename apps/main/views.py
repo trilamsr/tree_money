@@ -25,4 +25,4 @@ def getGraph(request, ticker, graph_range):
         'ticker': ticker,
         'graph_range': graph_range
     }
-    return 
+    return render(request, 'main/graph.html', context)
