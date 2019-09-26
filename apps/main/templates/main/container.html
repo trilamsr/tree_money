@@ -1,14 +1,15 @@
 {% block container %}
 <div class="container">
     <header>
-        <form action="/PLACEHOLDER" method="POST">
-            <input type="text" id="search_ticker" class="form-control">
+        <form action="/getTicker" method="POST">
+            <input type="text" name="search_ticker" id="search_ticker" class="form-control">
             <button type="submit" id="search_submit" class="btn btn-primary"></button>
         </form>
     </header>
     <main>
         <div id="graph">
-            
+            <canvas id="myChart" width="400" height="400"></canvas>
+
         </div>
         <div class="stats">
             
