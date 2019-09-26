@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 def main(request):
-    return render(request, 'main/MASTER.html')
+    return render(request, 'main/container.html')
 
 
 def getTicker(request):
