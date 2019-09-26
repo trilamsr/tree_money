@@ -1,20 +1,32 @@
-{% block container %}
+{% extends 'main/MASTER.html' %}
+{% block content %}
+
 <div class="container">
-    <header>
-        <form action="/PLACEHOLDER" method="POST">
-            <input type="text" id="search_ticker" class="form-control">
-            <button type="submit" id="search_submit" class="btn btn-primary"></button>
-        </form>
+    <header class="d-flex justify-content-center">
+        <h1>Welcome to Tree Money</h1>
     </header>
     <main>
+        <section>
+            <form action="/search_ticker" method="POST" class="d-flex justify-content-center">
+                <div class="input-group col-6">
+                    <input type="text" id="search_ticker" class="form-control" placeholder="Search: TICKER">
+                    <span class="input-group-btn">
+                        <button type="submit" id="search_submit" class="btn btn-primary">Search</button>
+                    </span>
+                </div>
+            </form>
+        </section>
+
         <div id="graph">
-            
+
         </div>
+
+
         <div class="stats">
-            
-            
+
+
+
         </div>
     </main>
 </div>
-<script src="{% static 'main/js/graph.js' %}"></script>
-{% endblock container %}
+{% endblock content %}
