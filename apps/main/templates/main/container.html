@@ -1,0 +1,20 @@
+{% block container %}
+<div class="container">
+    <header>
+        <form action="/PLACEHOLDER" method="POST">
+            <input type="text" id="search_ticker" class="form-control">
+            <button type="submit" id="search_submit" class="btn btn-primary"></button>
+        </form>
+    </header>
+    <main>
+        <div id="graph">
+            
+        </div>
+        <div class="stats">
+            
+            
+        </div>
+    </main>
+</div>
+<script src="{% static 'main/js/graph.js' %}"></script>
+{% endblock container %}
