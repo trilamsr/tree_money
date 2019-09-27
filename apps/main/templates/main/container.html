@@ -7,11 +7,12 @@
     </header>
     <main>
         <section>
-            <form action="/getTicker" method="POST" class="d-flex justify-content-center">
+            <form action="/getTicker" method="POST" id="ticker_form" class="d-flex justify-content-center">
                 {% csrf_token %}
                 <div class="input-group col-6">
                     <input type="text" id="search_ticker" name="ticker" class="form-control" placeholder="Search: TICKER">
                     <input type="hidden" name="graph_range" value="1d">
+                    <input type="hidden" name="interval" value="5m">
                     <span class="input-group-btn">
                         <button type="submit" id="search_submit" class="btn btn-primary">Search</button>
                     </span>
@@ -19,7 +20,7 @@
             </form>
         </section>
 
-        <div id="graph">
+        <div class="graph">
 
         </div>
 
