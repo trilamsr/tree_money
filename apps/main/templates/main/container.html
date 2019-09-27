@@ -1,4 +1,4 @@
-{% extends 'main/MASTER.html' %}
+{% extends 'main/__base__.html' %}
 {% block content %}
 
 <div class="container">
@@ -7,26 +7,20 @@
     </header>
     <main>
         <section>
-            <form action="/getTicker" method="POST" class="d-flex justify-content-center">
+            <form action="/get_nav" method="POST" class="d-flex justify-content-center">
+                {% csrf_token %}
                 <div class="input-group col-6">
-                    <input type="text" id="search_ticker" class="form-control" placeholder="Search: TICKER">
+                    <input type="text" id="search_ticker" name="ticker" class="form-control"
+                        placeholder="Search: TICKER">
                     <span class="input-group-btn">
                         <button type="submit" id="search_submit" class="btn btn-primary">Search</button>
                     </span>
                 </div>
             </form>
         </section>
-
-        <div id="graph">
-
-        </div>
-
-
-        <div class="stats">
-
-
-
-        </div>
+        <nav id="navigation_bar" class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center"></nav>
+        <div id="graph"></div>
+        <div id="stats"></div>
     </main>
 </div>
 {% endblock content %}

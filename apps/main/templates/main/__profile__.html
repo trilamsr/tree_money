@@ -1,0 +1,132 @@
+<div>
+    <h1>{{price.shortName}} ({{quoteType.symbol}})
+
+    </h1>
+    <div>{{price.exchangeName}} - {{price.quoteSourceName}}. Currency in {{price.currency}}</div>
+    <div>
+        <h2>
+            <span>{{price.currencySymbol}}{{price.regularMarketPrice.fmt}}</span>
+            {% if price.regularMarketChangePercent.raw > 0 %}
+            <span
+                style="color: green; font-size: 75%;">{{price.regularMarketChange.fmt}}/({{price.regularMarketChangePercent.fmt}})</span>
+            {% else %}
+            <span
+                style="color: red; font-size: 75%;">{{price.regularMarketChange.fmt}}/({{price.regularMarketChangePercent.fmt}})</span>
+            {% endif %}
+        </h2>
+    </div>
+</div>
+
+<section class="row">
+    <div class="col-6">
+        <table class="table">
+            <tr>
+                <th>Previous Close:</th>
+                <td>{{price.regularMarketPreviousClose.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Open:</th>
+                <td>{{price.regularMarketOpen.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Bid</th>
+                <td>{{summaryDetail.bid.fmt}} x {{summaryDetail.bidSize.raw}}</td>
+            </tr>
+            <tr>
+                <th>Ask</th>
+                <td>{{summaryDetail.ask.fmt}} x {{summaryDetail.askSize.raw}}</td>
+            </tr>
+            <tr>
+                <th>Day's Range</th>
+                <td>{{price.regularMarketDayLow.fmt}} - {{price.regularMarketDayHigh.fmt}}</td>
+            </tr>
+            <tr>
+                <th>52 Week Range</th>
+                <td>{{defaultKeyStatistics.52WeekChange.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Volume:</th>
+                <td>{{price.regularMarketVolume.fmt}}</td>
+            </tr>
+            <tr>
+                <th>10D Volume:</th>
+                <td>{{price.averageDailyVolume10Day.fmt}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table">
+            <tr>
+                <th>Market Cap:</th>
+                <td>{{summaryDetail.marketCap.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Beta:</th>
+                <td>{{defaultKeyStatistics.beta.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Forward PE:</th>
+                <td>{{defaultKeyStatistics.forwardPE.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Forward EPS:</th>
+                <td>{{defaultKeyStatistics.forwardEps.fmt}}</td>
+            </tr>
+            <tr>
+                <th>Earning Date:</th>
+                <td>
+                    {{earnings.earningsChart.earningsDate.0.fmt}} - {{earnings.earningsChart.earningsDate.1.fmt}}
+                </td>
+            </tr>
+            <tr>
+                <th>Ex-Dividend Date</th>
+                <td>
+                    {% if summaryDetail.exDividendDate.fmt %}
+                    {{summaryDetail.exDividendDate.fmt}}
+                    {% else%}
+                    -
+                    {%endif%}
+                </td>
+            </tr>
+            <tr>
+                <th>Recommendation:</th>
+                <td>
+                    {{financialData.recommendationKey | upper}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<article>
+    {{summaryProfile.longBusinessSummary}}
+</article>
+<section>
+    <table class="table">
+        <tr>
+            <th>Website:</th>
+            <td> <a href="{{summaryProfile.website}}">{{summaryProfile.website}}</a>
+            </td>
+        </tr>
+        <tr>
+            <th>Sector:</th>
+            <td>{{summaryProfile.sector}}</td>
+        </tr>
+        <tr>
+            <th>Industry:</th>
+            <td>{{summaryProfile.industry}}</td>
+        </tr>
+        <tr>
+            <th>Full-time Employees:</th>
+            <td>{{summaryProfile.fullTimeEmployees}}</td>
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td>{{summaryProfile.address1}} {{summaryProfile.city}}, {{summaryProfile.state}},
+                {{summaryProfile.zip}} </td>
+        </tr>
+        <tr>
+            <th>Phone:</th>
+            <td>{{summaryProfile.phone}}</td>
+        </tr>
+    </table>
+</section>

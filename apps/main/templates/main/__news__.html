@@ -1,0 +1,12 @@
+{%for article in headlines.articles%}
+<div class="row" style="max-height: 15rem; border-bottom: 2px solid black;">
+    <div class="col-3"><img class="img-thumbnail" style="height: 100%; width:100%" src="{{article.urlToImage}}" alt="{{article.content}}"></div>
+    <section class="col-9">
+        <h5 class="lead">
+            <a href="{{article.url}}">{{article.title}}</a>
+        </h5>
+        <footer class="blockquote-footer">By {{article.author}} from {{article.source.name}} on {{article.publishedAt}}</footer>
+        <div>{{article.description}}</div>
+    </section>
+</div>
+{%endfor%}

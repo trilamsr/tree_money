@@ -3,12 +3,9 @@ from . import views
 
 urlpatterns = [
     url(r"^$", views.main),
-
-    # Tri
-    url(r"^get_stats$", views.get_stats),
-    
-
-    # Logan
-    url(r"^getTicker$", views.getTicker),
-    url(r"^getGraph/(?P<ticker>\w+)/(?P<graph_range>\w+)$", views.getGraph),
+    url(r"^get_nav/?$", views.get_nav),
+    url(r"^get_financial/?$", views.get_data('financial')),
+    url(r"^get_technical/?$", views.get_data('technical')),
+    url(r"^get_profile/?$", views.get_data('profile')),
+    url(r"^get_news/?$", views.get_news),
 ]

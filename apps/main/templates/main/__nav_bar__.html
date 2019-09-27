@@ -1,0 +1,20 @@
+<form action="/get_profile" method="post">
+    {%csrf_token%}
+    <input type="hidden" value='{{ticker}}' name='ticker'>
+    <button type="submit" id="profile" class="btn-link btn">Profile</button>
+</form>
+<form action="/get_technical" method="post">
+    {%csrf_token%}
+    <input type="hidden" value='{{ticker}}' name='ticker'>
+    <button type="submit" id="technical" class="btn-link btn">Technical</button>
+</form>
+<form action="/get_financial" method="post">
+    {%csrf_token%}
+    <input type="hidden" value='{{ticker}}' name='ticker'>
+    <button type="submit" id="financial" class="btn-link btn">Financial</button>
+</form>
+<form action="/get_news" method="post">
+    {%csrf_token%}
+    <input type="hidden" value='{{ticker}}' name='ticker'>
+    <button type="submit" id="news" class="btn-link btn">News</button>
+</form>
