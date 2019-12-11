@@ -1,15 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <title>Document</title>
 </head>
-<body>
-<p>The graph should go here:</p>
-<canvas id="myChart" width="400" height="400"></canvas>
 
-    
+<body>
+    <div class="container">
+
+        <p>The graph should go here:</p>
+        <div class="btn-group">
+            <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="graph_range" value="1d">
+            <input type="hidden" name="ticker" value="{{symbol}}">
+            <input type="hidden" name="interval" value="5m">
+            <input type="submit" value="1d" class="btn btn-secondary">
+            </form>
+            <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="graph_range" value="5d">
+            <input type="hidden" name="ticker" value="{{symbol}}">
+            <input type="hidden" name="interval" value="60m">
+            <input type="submit" value="5d" class="btn btn-secondary">
+            </form>
+            <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="graph_range" value="1mo">
+            <input type="hidden" name="ticker" value="{{symbol}}">
+            <input type="hidden" name="interval" value="1d">
+            <input type="submit" value="1mo" class="btn btn-secondary">
+            </form>
+            <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="graph_range" value="6mo">
+            <input type="hidden" name="ticker" value="{{symbol}}">
+            <input type="hidden" name="interval" value="1d">
+            <input type="submit" value="6mo" class="btn btn-secondary">
+            </form>
+            <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="graph_range" value="1y">
+            <input type="hidden" name="ticker" value="{{symbol}}">
+            <input type="hidden" name="interval" value="1d">
+            <input type="submit" value="1y" class="btn btn-secondary">
+            </form>
+            <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="graph_range" value="5y">
+            <input type="hidden" name="ticker" value="{{symbol}}">
+            <input type="hidden" name="interval" value="1d">
+            <input type="submit" value="5y" class="btn btn-secondary">
+            </form>
+
+        </div>
+        <canvas id="myChart" width="400" height="400" style="padding: 5px"></canvas>
+        <input type="hidden" value="{{data}}">
+        <p id="data">{{time}}{{data}}</p>
+        
+        <script type="text/javascript">
+            console.log('here')
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var stockdata = {{data}}
+            console.log('load data')
+            var time = {{time}}
+            console.log('time ?????')
+            function lineColor(list){
+            if(stockdata[0]>stockdata[stockdata.length - 1]){
+                return 'rgba(242, 38, 19, 1)'
+            }else{ 
+                return 'rgba(0, 177, 106, 1)'
+            }
+            }
+            var line_color = lineColor()
+            console.log(line_color)
+            function convertTime(list){
+                for(var i = 0; i < list.length; i++){
+                    list[i] = new Date(list[i] * 1000)
+                }
+                return list
+            };
+            function addOpenLine(list){
+                    let newList = []
+                for(var i = 0; i < list.length; i++){
+                    
+                    newList.push(list[0])
+                }
+                return newList
+            };
+            var stocktime = convertTime(time);
+            var openPrice = addOpenLine(stockdata);
+            console.log(openPrice);
+var data = {
+    // Labels should be Date objects
+    labels: stocktime,
+    datasets: [{
+        fill: false,
+        label: 'Page Views',
+        data: stockdata,
+        borderColor: line_color,
+        lineTension: 0,
+    },
+    {
+        fill: false,
+        label: '',
+        data: openPrice,
+        borderColor: 'rgba(191, 191, 191, .7)',
+        lineTension: 0,
+    }]
+}
+var options = {
+    type: 'line',
+    data: data,
+    options: {
+        legend: false,
+        fill: false,
+        responsive: true,
+        scales: {
+            xAxes: [{
+                type: 'time',
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: "Date",
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: false,
+                },
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: "Page Views",
+                }
+            }]
+        }
+    }
+}
+var chart = new Chart(ctx, options);
+
+        
+            </script>
+
+</div>
+
 </body>
+
 </html>

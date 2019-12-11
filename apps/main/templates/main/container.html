@@ -7,9 +7,11 @@
     </header>
     <main>
         <section>
-            <form action="/get_nav" method="POST" class="d-flex justify-content-center">
+            <form action="/getTicker" method="POST" class="d-flex justify-content-center" id="ticker_form">
                 {% csrf_token %}
                 <div class="input-group col-6">
+                    <input type="hidden" name="graph_range" value="1d">
+                    <input type="hidden" name="interval" value="5m">
                     <input type="text" id="search_ticker" name="ticker" class="form-control"
                         placeholder="Search: TICKER">
                     <span class="input-group-btn">
@@ -18,9 +20,14 @@
                 </div>
             </form>
         </section>
-        <nav id="navigation_bar" class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center"></nav>
-        <div id="graph"></div>
-        <div id="stats"></div>
+        <div id="navigation_bar">
+            
+        </div>
+        
+        <div>
+            <div id="graph"></div>
+            <div id="stats"></div>
+        </div>
     </main>
 </div>
 {% endblock content %}

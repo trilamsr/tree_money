@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 import requests
 from newsapi import NewsApiClient
+import time
 
 # Create your views here.
 
@@ -34,10 +35,34 @@ def get_nav(request):
 
 
 def get_data(str):
-    print(str)
     def get(req):
         if req.method == 'POST':
-            print('-------inside POST-----')
             response = get_data_stats(req.POST['ticker'].upper()).json()
             return render(req,f'main/__{str}__.html', response)
     return get
+    
+def getChartData(ticker, graph_range, interval='5m'):
+    ticker = ticker
+    graph_range = graph_range
+    url = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart"
+    querystring = {"interval":interval,"region":"US","symbol":ticker,"lang":"en","range":graph_range}
+    headers = {
+    'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
+    'x-rapidapi-key': "9cf6f84669mshf37812fae4d0b86p19dc92jsnac00aa2c3e97"
+    }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    return response
+
+
+
+def getGraph(req):
+    response = getChartData(req.POST['ticker'].upper(),req.POST['graph_range'],req.POST['interval']).json()
+    gettime = response['chart']['result'][0]['timestamp']
+    context = {
+        'symbol': str(req.POST['ticker'].upper()),
+        'time': response['chart']['result'][0]['timestamp'],
+        'data': response['chart']['result'][0]['indicators']['quote'][0]['open']
+    }
+    return render(req, 'main/graph.html', context)
+
+    # return HttpResponse(response)

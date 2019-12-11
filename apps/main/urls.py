@@ -8,4 +8,6 @@ urlpatterns = [
     url(r"^get_technical/?$", views.get_data('technical')),
     url(r"^get_profile/?$", views.get_data('profile')),
     url(r"^get_news/?$", views.get_news),
+    url(r"^getTicker/?$", views.getGraph),
+    url(r"^getTicker1/?$", views.getGraph),
 ]
