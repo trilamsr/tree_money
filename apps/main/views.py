@@ -48,7 +48,7 @@ def getChartData(ticker, graph_range, interval='5m'):
     querystring = {"interval":interval,"region":"US","symbol":ticker,"lang":"en","range":graph_range}
     headers = {
     'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
-    'x-rapidapi-key': "9cf6f84669mshf37812fae4d0b86p19dc92jsnac00aa2c3e97"
+    'x-rapidapi-key': ""
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
     return response
