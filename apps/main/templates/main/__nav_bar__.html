@@ -1,20 +1,43 @@
-<form action="/get_profile" method="post">
-    {%csrf_token%}
-    <input type="hidden" value='{{ticker}}' name='ticker'>
-    <button type="submit" id="profile" class="btn-link btn">Profile</button>
-</form>
-<form action="/get_technical" method="post">
-    {%csrf_token%}
-    <input type="hidden" value='{{ticker}}' name='ticker'>
-    <button type="submit" id="technical" class="btn-link btn">Technical</button>
-</form>
-<form action="/get_financial" method="post">
-    {%csrf_token%}
-    <input type="hidden" value='{{ticker}}' name='ticker'>
-    <button type="submit" id="financial" class="btn-link btn">Financial</button>
-</form>
-<form action="/get_news" method="post">
-    {%csrf_token%}
-    <input type="hidden" value='{{ticker}}' name='ticker'>
-    <button type="submit" id="news" class="btn-link btn">News</button>
-</form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center">
+    <form action="/get_profile" method="post">
+        {%csrf_token%}
+        <input type="hidden" value='{{ticker}}' name='ticker'>
+        <button type="submit" id="profile" class="btn-link btn">Profile</button>
+    </form>
+    <form action="/get_technical" method="post">
+        {%csrf_token%}
+        <input type="hidden" value='{{ticker}}' name='ticker'>
+        <button type="submit" id="technical" class="btn-link btn">Technical</button>
+    </form>
+    <form action="/get_financial" method="post">
+        {%csrf_token%}
+        <input type="hidden" value='{{ticker}}' name='ticker'>
+        <button type="submit" id="financial" class="btn-link btn">Financial</button>
+    </form>
+    <form action="/get_news" method="post">
+        {%csrf_token%}
+        <input type="hidden" value='{{ticker}}' name='ticker'>
+        <button type="submit" id="news" class="btn-link btn">News</button>
+    </form>
+</nav>
+
+<div>
+    <div class="btn-group">
+        <form action="/getTicker" method="POST">
+            {% csrf_token %}
+            <input class="radio" type="radio" id="1d" name='graph_range' value="1d" checked>
+            <label for="1d">1d</label>
+            <input class="radio" type="radio" id="5d" name='graph_range' value="5d">
+            <label for="5d">5d</label>
+            <input class="radio" type="radio" id="1mo" name='graph_range' value="1mo">
+            <label for="1mo">1mo</label>
+            <input class="radio" type="radio" id="6mo" name='graph_range' value="6mo">
+            <label for="6mo">6mo</label>
+            <input class="radio" type="radio" id="1y" name='graph_range' value="1y">
+            <label for="1y">1y</label>
+            <input class="radio" type="radio" id="5y" name='graph_range' value="5y">
+            <label for="5y">5y</label>
+            <input class="radio" type="hidden" name="ticker" value="{{symbol}}">
+        </form>
+    </div>
+</div>
